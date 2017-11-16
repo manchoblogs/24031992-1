@@ -294,7 +294,7 @@ return [
     'title' => 'Başlık',
     'TrendingsOnOff' => 'Popüler alanı?',
     'close' => 'Kapat',
-
+    'download' => 'İndir',
 
     //posts
     'Preview' => 'Önizleme Resmi',

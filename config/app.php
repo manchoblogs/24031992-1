@@ -45,6 +45,11 @@ return [
             'rtl'       => false,
             'wideheader'=> true
         ],
+        'ar'            => [
+            'name'      => 'لعربية (Arabic)',
+            'rtl'       => true,
+            'wideheader'=> true
+        ],
     ],
 
 
@@ -187,7 +192,6 @@ return [
         yajra\Datatables\DatatablesServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        Terbium\DbConfig\DbConfigServiceProvider::class,
         Simexis\Installer\InstallerServiceProvider::class,
         SocialiteProviders\Manager\ServiceProvider::class,
         /*
@@ -251,7 +255,6 @@ return [
         'Image'     => Intervention\Image\Facades\Image::class,
         'Datatables'=> yajra\Datatables\Datatables::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'DbConfig'  => Terbium\DbConfig\Facade::class,
         'Theme'     => YAAP\Theme\Facades\Theme::class,
     ],
 

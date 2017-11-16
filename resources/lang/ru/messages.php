@@ -7,8 +7,8 @@ return [
      * Shared translations.
      *
      */
-    'title' => 'Buzzy Installer',
-    'next' => 'Next Step',
+    'title' => 'Установщик Buzzy',
+    'next' => 'Далее',
 
 
     /**
@@ -17,8 +17,8 @@ return [
      *
      */
     'welcome' => [
-        'title'   => 'Welcome To The Installer...',
-        'message' => 'Welcome to the setup wizard.',
+        'title'   => 'Начало установки...',
+        'message' => 'Следуйте указаниям мастера установки',
     ],
 
 
@@ -28,7 +28,7 @@ return [
      *
      */
     'requirements' => [
-        'title' => 'Requirements',
+        'title' => 'Требования',
     ],
 
 
@@ -38,7 +38,7 @@ return [
      *
      */
     'permissions' => [
-        'title' => 'Permissions',
+        'title' => 'Права доступа',
     ],
 
 
@@ -48,10 +48,10 @@ return [
      *
      */
     'environment' => [
-        'title' => 'Environment Settings',
-        'save' => 'Save .env',
-        'success' => 'Your .env file settings have been saved.',
-        'errors' => 'Unable to save the .env file, Please create it manually.',
+        'title' => 'Файл конфигурации',
+        'save' => 'Сохранить .env',
+        'success' => 'Ваш .env файл сохранён.',
+        'errors' => 'Невозможно сохранить .env файл, попробуйте вручную.',
     ],
 
 
@@ -61,9 +61,9 @@ return [
      *
      */
     'upgrade' => [
-        'title' => 'Upgrade application',
-        'welcome' => 'Your are currently running version :current and the latest available version is :latest click to upgrade.',
-        'button' => 'Upgrade',
+        'title' => 'Обновление системы',
+        'welcome' => 'Вы используете версию :current, можно обновиться до :latest.',
+        'button' => 'Обновить',
     ],
 
 
@@ -73,8 +73,8 @@ return [
      *
      */
     'final' => [
-        'title' => 'Finished',
-        'finished' => 'Application has been successfully installed.',
-        'exit' => 'Click here to exit',
+        'title' => 'Готово',
+        'finished' => 'Приложение успешно установлено.',
+        'exit' => 'Завершить',
     ],
 ];

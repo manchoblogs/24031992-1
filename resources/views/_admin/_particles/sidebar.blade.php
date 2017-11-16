@@ -118,6 +118,12 @@
                 <li><a href="{{ action('Admin\PagesController@add') }}"><i class="fa fa-caret-right"></i> {{ trans('admin.AddNewPage') }}</a></li>
             </ul>
         </li>
+        <li class="treeview  @if(Request::segment(2)=='reactions') active @endif">
+            <a href="{{ action('Admin\ReactionController@index') }}">
+                <i class="fa fa-thumbs-o-up"></i>
+                <span>Reactions</span>
+            </a>
+        </li>
         <li class="treeview  @if(Request::segment(2)=='widgets') active @endif">
             <a href="{{ action('Admin\WidgetsController@index') }}">
                 <i class="fa fa-plus-square"></i>

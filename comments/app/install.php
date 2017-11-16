@@ -208,7 +208,7 @@ function dbcontrol(){
 							  `approve` int(2) NOT NULL DEFAULT '0',
 							  `u_name` varchar(100) DEFAULT NULL,
 							  `u_email` varchar(100) DEFAULT NULL,							  
-							  `out_id` int(11) DEFAULT NULL,
+							  `out_id` varchar(20) DEFAULT NULL,
 							  `out_name` varchar(100) DEFAULT NULL,							  
 							  `out_link` varchar(250) DEFAULT NULL,
 							  `out_icon` varchar(250) DEFAULT NULL,

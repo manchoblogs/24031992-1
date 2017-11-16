@@ -7,6 +7,8 @@ Route::get('verify', 'AkbilisimController@index');
 
 Route::get('{type}.xml', 'RssController@index');
 
+Route::get('fbinstant.rss', 'RssController@fbinstant');
+
 Route::get('{type}.json', 'RssController@json');
 
 Route::get('/selectlanguge/{lang}', 'IndexController@langpick');
@@ -80,7 +82,13 @@ Route::group(['middleware' => 'Admin', 'prefix' => 'admin'], function () {
     Route::get('widgets/delete/{id}', 'Admin\WidgetsController@delete');
     Route::get('widgets', 'Admin\WidgetsController@index');
 
+    Route::post('reactions/addnew', 'Admin\ReactionController@addnew');
+    Route::get('reactions/delete/{id}', 'Admin\ReactionController@delete');
+    Route::get('reactions', 'Admin\ReactionController@index');
+
 });
+
+
 
 
 Route::get('/', 'IndexController@index');
@@ -90,6 +98,7 @@ Route::get('search',  'PagesController@search');
 Route::post('shared', 'PollController@Shared');
 Route::get('commentload',  'PostsController@commentload');
 Route::get('reactions/{reaction}',  'PagesController@showReaction');
+Route::get('404', 'PagesController@dort');
 
 
 Route::get('contact', 'ContactController@index');
@@ -134,20 +143,29 @@ Route::get('tag/{tag}',  'PagesController@showtag');
 
 Route::get('pages/{page}',  'PagesController@showpage');
 
-Route::post('profile/{userslug}/settings', 'UsersController@updatesettings');
-Route::post('profile/{userslug}/follow', 'UsersController@follow');
-Route::get('profile/{userslug}/settings', 'UsersController@settings');
-Route::get('profile/{userslug}/following', 'UsersController@following');
-Route::get('profile/{userslug}/followers', 'UsersController@followers');
-Route::get('profile/{userslug}/feed', 'UsersController@followfeed');
-Route::get('profile/{userslug}/news', 'UsersController@index');
-Route::get('profile/{userslug}/lists', 'UsersController@index');
-Route::get('profile/{userslug}/quizzes', 'UsersController@index');
-Route::get('profile/{userslug}/polls', 'UsersController@index');
-Route::get('profile/{userslug}/videos', 'UsersController@index');
-Route::get('profile/{userslug}/draft', 'UsersController@draftposts');
-Route::get('profile/{userslug}/trash', 'UsersController@deletedposts');
-Route::get('profile/{userslug}', 'UsersController@index');
+
+
+Route::group(['prefix' => 'profile/{userslug}'], function () {
+    Route::post('settings', 'UsersController@updatesettings');
+    Route::get('settings', 'UsersController@settings');
+    Route::get('follow', 'UsersController@follow');
+    Route::get('following', 'UsersController@following');
+    Route::get('followers', 'UsersController@followers');
+    Route::get('feed', 'UsersController@followfeed');
+    Route::get('draft', 'UsersController@draftposts');
+    Route::get('trash', 'UsersController@deletedposts');
+    Route::get('/', 'UsersController@index');
+});
+
+
+Route::group(['prefix' => 'amp'], function () {
+
+    Route::get('{catname}/{slug}', 'PostsController@amp');
+
+    Route::get('/', 'IndexController@amp');
+
+});
+
 
 Route::post('{catname}/{postname}/newvote', 'PollController@VoteANewPoll');
 Route::post('{catname}/{postname}/vote', 'PollController@VoteAPoll');

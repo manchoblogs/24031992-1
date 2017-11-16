@@ -45,4 +45,16 @@ class Reactions extends Model
 
         return $query->where('user_id', $auser)->where('post_id', $post);
     }
+
+
+    public function scopeCurrentUserHasVoteOnReaction($query, $reaction_type)
+    {
+        if(Auth::check()){
+            $auser = Auth::user()->id;
+        }else{
+            $auser = \Request::ip();
+        }
+
+        return $query->where('user_id', $auser)->where('reaction_type', $reaction_type);
+    }
 }

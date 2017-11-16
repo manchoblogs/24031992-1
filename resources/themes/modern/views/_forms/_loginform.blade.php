@@ -22,7 +22,7 @@
                         <a href="/password/email">{{ trans('passwords.forgotpassword') }}</a>
                     </div>
                 </div>
-                <button type="submit" class="button button-orange button-full" id="PostUserLogin">{{ trans('index.login') }}</button>
+                <button type="submit" class="button button-orange button-full"  style="margin-top:5px" id="PostUserLogin">{{ trans('index.login') }}</button>
 
              {!! Form::close() !!}
 

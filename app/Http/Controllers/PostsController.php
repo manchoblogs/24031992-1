@@ -16,19 +16,15 @@ use Image;
 class PostsController extends Controller
 {
 
-
-
     public function __construct(){
 
         parent::__construct();
-
-
 
         $this->s3url=awsurl();
 
         $this->middleware('DemoAdmin', ['only' => ['sendtrashpost', 'CreateEditPost']]);
 
-        $this->middleware('auth', ['except' => ['index', 'ajax_previous', 'commentload']]);
+        $this->middleware('auth', ['except' => ['index', 'amp', 'ajax_previous', 'commentload']]);
     }
 
 
@@ -77,11 +73,7 @@ class PostsController extends Controller
         $lastTrending = Posts::approve('yes')->where('posts.id', '!=', $post->id)->typesActivete()->getStats('one_day_stats', 'DESC', 10)->get();
 
 
-        $lastFeatures = '';
-        if(isset($postacatpe) && isset($post->categories)){
-        $postacatpe=getfirstcat($post->categories);
-        $lastFeatures = Posts::approve('yes')->where('categories', 'LIKE',  '%'.$postacatpe->id.'%')->typesActivete()->getStats('one_day_stats', 'DESC', 6)->get();
-        }
+        $lastFeatures = Posts::approve('yes')->where('type', $post->type)->typesActivete()->getStats('one_day_stats', 'DESC', 6)->get();
 
 
         $reactions=false;
@@ -90,6 +82,39 @@ class PostsController extends Controller
         }
         $commentson=true;
         return view("pages/post", compact('post', 'entrys', 'reactions', 'entrysquizquest', 'entrysquizresults', 'lastTrending', 'lastFeatures', 'commentson'));
+    }
+
+
+    /**
+     * Show a Amp Post
+     *
+     * @return \Illuminate\View\View
+     */
+    public function amp($catname, $id)
+    {
+        $post= Posts::where('id', $id)->first();
+
+        if (!$post) {
+            return redirect('404');
+        }
+
+        if($post->type=='quiz' || $post->type=='poll'){
+            return redirect('404');
+        }
+
+        if ($post->approve == 'no' or $post->approve == 'draft' ) {
+            if (!Auth::check() or $post->user_id != Auth::user()->id and Auth::user()->usertype != 'Admin') {
+                   return redirect('404');
+            }
+        }
+
+        $entrys = $post->entry();
+        $entrys =  $entrys->where('type','!=', 'answer')->orderBy('order', $post->ordertype=='desc' ? 'desc' : 'asc')->get();
+
+
+        $lastFeatures = Posts::approve('yes')->where('type', $post->type)->typesActivete()->getStats('one_day_stats', 'DESC', 6)->get();
+
+        return view("amp/post", compact('post', 'entrys', 'lastFeatures'));
     }
 
     /**

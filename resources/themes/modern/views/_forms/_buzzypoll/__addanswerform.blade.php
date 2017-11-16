@@ -1,10 +1,11 @@
-<div class="answer" data-type="answer" @if(isset($entry->id)) data-entry-id="{{ $entry->id }}" @endif>
+<div class="answer" data-type="answer" @if(isset($answer->id)) data-entry-id="{{ $answer->id }}" @endif>
+
 <div  class="answer-wrapper">
     <div class="entryactions" style="left:auto;right:0;border-right: 0;box-shadow: 0;background: transparent;">
         <button class="button button-white get-button delete-entry" data-block="answer"><i class="fa fa-remove"></i></button>
     </div>
     <span class="drag-handle"> <i class="fa fa-arrows fa-2x"></i></span>
-    <div class="inpunting mediaupload" @if(isset($entry->image)) style="display: none;" @endif>
+    <div class="inpunting mediaupload" @if(isset($answer->image)) style="display: none;" @endif>
         <div class="item-media-placeholder">
             <i class="fa fa-plus fa-2x"></i><br>
             <form action="">
@@ -16,18 +17,18 @@
             </div>
         </div>
     </div>
-    {!! Form::hidden(null, isset($entry->image) ? makepreview($entry->image, null, 'answers') : null, ['data-type' => 'image', 'class' => 'cd-input-image ']) !!}
-    <div class="inpunting imagearea @if(empty($entry->image)) hide @endif">
+    {!! Form::hidden(null, isset($answer->image) ? makepreview($answer->image, null, 'answers') : null, ['data-type' => 'image', 'class' => 'cd-input-image ']) !!}
+    <div class="inpunting imagearea @if(empty($answer->image)) hide @endif">
         <div class="imagearea_img">
-        @if(isset($entry->image)) <img src="{{ makepreview($entry->image, null, 'answers') }}"> @endif
+        @if(isset($answer->image)) <img src="{{ makepreview($answer->image, null, 'answers') }}"> @endif
         </div>
         <div class="thumbactions">
             <a class="button button-red deleteimage" data-action="remove" data-target="answer"><i class="fa fa-trash"></i></a>
         </div>
     </div>
 
-    <div class="inpunting " style=" padding:0">
-        {!! Form::textarea(null, isset($entry->title) ? $entry->title : null ?: null, ['data-type' => 'title', 'class' => 'cd-input answerinput', 'placeholder' => trans('buzzyquiz.entry_answertitle')]) !!}
+    <div class="inpunting " style="padding:0">
+        {!! Form::textarea(null, isset($answer->title) ? $answer->title : null, ['data-type' => 'title', 'class' => 'cd-input answerinput', 'placeholder' => trans('buzzyquiz.entry_answertitle')]) !!}
     </div>
 </div>
 </div>

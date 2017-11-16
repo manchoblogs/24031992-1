@@ -299,7 +299,7 @@ $response['error'] = $lang["REQUEST_1"];
 	
 	$username = "";
 	if (isset($_POST["username"])) { 
-		$username = htmlentities(strip_tags(tirnak_replace($_POST["username"])));
+		$username = strip_tags(tirnak_replace($_POST["username"]));
 	}		
 	$email = "";
 	if (isset($_POST["email"])) { 
@@ -568,7 +568,7 @@ $msg_type = $_POST["contenttype"];
 	$response['error'] = $lang["REQUEST_13A"];
 	}else{
 		
-	$u_name = "";$u_email = "";	$out_id = "";$out_name = "";$out_link = "";$out_icon = "";
+	$u_name = "";$u_email = "";	$out_id = ""; $out_name = "";$out_link = "";$out_icon = "";
 	if ($CUSER==""){
 		
 		if (isset($_SESSION['oturumid'])){ 
@@ -645,16 +645,12 @@ $msg_type = $_POST["contenttype"];
 				exit();
 			}
 		}
-	
-	
 
-		
 
 	$return = $dbpdo->prepare("INSERT INTO comments (user_id,comment,content_id,type,domainaccess,date,spoiler,approve,u_name,u_email,out_id,out_name,out_link,out_icon) VALUES ('$kullniciid' , '$comment' , '$icerikid' , '$msg_type' , '$domainaccess' , '$phptarih', '$spoiler', '$db_commentsappow', '$u_name', '$u_email','$out_id', '$out_name', '$out_link', '$out_icon')");
 	$return->bindParam(":comment",$comment);
 	$return = $return->execute();
-	
-	
+
 	$rsqal  = $dbpdo->query("select id from comments where content_id = '$icerikid' and user_id = '$kullniciid' and type = '$msg_type'  and domainaccess = '$domainaccess' and out_id = '$out_id' and out_name = '$out_name'  order by id DESC limit 1");
 	$gelenl = $rsqal->fetch();
 	
@@ -675,7 +671,7 @@ $msg_type = $_POST["contenttype"];
 
 				
 	$response['data'] = '<div class="comment" id="comment'.$commentid.'"><span style="">
-	<img class="avatar" src="'.$icon.'" alt="">
+	<img class="avatar" src="'.$kullniciicon.'" alt="">
 <div class="c-text"><div class="c-top"><a '.$cevapyaniyazanusertypecolor.'  href="javascript:;" data-id="'.$kullniciid.'" data-user="'.$kullnicikim.'" onmouseover="loaduserWidget(this)">'.$kullnicikim.''.$cevapyaniyazanusertypeyazi.'</a>
 <span class="date"><span>•</span> '.$lang["REQUEST_13B"].'</span></div>
 <p style="display: block">'.$comment.'</p>
@@ -689,7 +685,7 @@ $msg_type = $_POST["contenttype"];
  </div>
  <div class="add-subcomment" id="open_add_subcomment_'.$commentid.'">
  <div class="loader-ajax"></div>
- <div class="formm"><img src="'.$icon.'" alt="">
+ <div class="formm"><img src="'.$kullniciicon.'" alt="">
  <div class="inner"><form id="subcomment_194880" action="" onsubmit="return false;">
  <input type="hidden" name="user_id"><input type="hidden" name="comment_id" value="'.$commentid.'">
  <textarea name="comment_text" cols="30" rows="10" placeholder="'.$lang["COMMENT_LINK_9C"].'" onclick="excomment_text(this)"></textarea>
@@ -824,7 +820,7 @@ $msg_type = $_POST["contenttype"];
 	$return = $return->execute();
 	
 
-	$cevapidgetir  = $dbpdo->query("select id from comments where user_id = '$_SESSION[oturumid]' and content_id = '$comment_id' and type = '$yenicommenttype' and domainaccess = '$domainaccess' and out_id = '$out_id' and out_name = '$out_name' order by date desc");
+	$cevapidgetir  = $dbpdo->query("select id from comments where user_id = '$kullniciid' and content_id = '$comment_id' and type = '$yenicommenttype' and domainaccess = '$domainaccess' and out_id = '$out_id' and out_name = '$out_name' order by date desc");
 	$gelenww = $cevapidgetir->fetch();
 
 	$yeniidne=$gelenww["id"];
@@ -874,8 +870,7 @@ $msg_type = $_POST["contenttype"];
 	$response['error'] = $lang["REQUEST_3"];
 	}
 		
-	
-	
+
 	}
 
 }elseif ($type == 'loadComments') { 	

@@ -1,9 +1,13 @@
 @foreach($lastFeatures as $k => $item)
     <div class="content-timeline__item is-active">
+
+
         @if( $item->type=='quiz')
             <div class="badge quiz"><div class="badge-img"></div></div>
         @elseif($item->featured_at !== null)
             <div class="badge featured"><div class="badge-img"></div></div>
+        @else
+            {{  reaction_icon_get($item) }}
         @endif
 
         <div class="content-timeline--right">
@@ -70,7 +74,7 @@
 
         </div>
     </div>
-    @if(count($lastpoll)>0 and $k==4  and getenvcong('p-buzzyvideos') == 'on')
+    @if(count($lastvideoscol1)>0 and $k==4  and getenvcong('p-buzzyvideos') == 'on')
         <div class="colheader rosy">
             <h1>{{ trans('index.mostrecent', ['type' => trans('index.videos') ]) }}</h1>
         </div>
@@ -111,6 +115,7 @@
         <div class="sidebar-block  clearfix" style="margin-top: 10px;">
             <ol class="sidebar-mosts sidebar-mosts--readed column_list sec_column">
                 @foreach($lastpoll->slice(0, 2) as $itema)
+
                     <li class="sidebar-mosts__item ">
                         <a class="sidebar-mosts__item__link" href="{{ makeposturl($itema) }}" title="{{ $itema->title }}">
                             <figure class="sidebar-mosts__item__body">

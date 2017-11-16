@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'approved' => 'Привет :UserName, У Нас хорошие новости!<br>
-                   Твой пост <b>:PostTitle</b> был одобрен. Вы можете поделиться ссылкой в соц. сетях url:<br> <b>:Postlink</b>',
+    'approved' => 'Привет, :UserName!<br>
+                   Твой пост <b>:PostTitle</b> опубликован. Теперь можешь поделиться ссылкой в социальных сетях url:<br> <b>:Postlink</b>',
 
     'approvedsubject' => 'Ваш пост одобрен!',
 

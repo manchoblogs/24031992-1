@@ -11,7 +11,6 @@ class IndexController extends Controller
 
         parent::__construct();
 
-
     }
 
     public function index()
@@ -83,6 +82,26 @@ class IndexController extends Controller
 
 
         return view('pages.index', compact('lastFeaturestop', 'lastFeatures', 'lastvideoscol1', 'lastpoll', 'lastNews','lastNewsVideos', 'lastTrending', 'lastTrendingVideos', 'HomeColSec1Tit1', 'HomeColSec2Tit1', 'HomeColSec3Tit1'));
+    }
+
+
+    /**
+     * Show a Amp Post
+     *
+     * @return \Illuminate\View\View
+     */
+    public function amp()
+    {
+
+        $lastFeaturestop = Posts::forhome('Features')->where('type', '!=', 'quiz')->where('type', '!=', 'poll')->typesActivete()->approve('yes')->where("featured_at", '>', '')->latest("featured_at")->take(10)->get();
+
+
+        //colums 2
+        $lastNews =   Posts::forhome()->where('type', '!=', 'quiz')->where('type', '!=', 'poll')->typesActivete()->approve('yes')->latest("published_at")->paginate(10);
+
+
+        return view('amp.index', compact('lastFeaturestop',  'lastNews'));
+
     }
 
 

@@ -21,7 +21,14 @@
                     {!!  trans('index.termslink', ['url' => '<a href="'.getenvcong('termspage').'" target="_blank">'.trans('index.terms').'</a>']) !!}
                 </div>
             </div>
-            <button type="button" class="button button-orange button-full"  id="PostNewUser">{{ trans('index.register') }}</button>
+            @if(getenvcong('BuzzyContactCaptcha', 'off')=="on")
+                <div class="under-email-signin clearfix" >
+                    <label>{{ trans('buzzycontact.areyouhuman') }}</label>
+                    <script src='https://www.google.com/recaptcha/api.js'></script>
+                    <div class="g-recaptcha" data-sitekey="{{  getenvcong('reCaptchaKey') }}"></div>
+                </div>
+            @endif
+            <button type="button" class="button button-orange button-full" style="margin-top:5px" id="PostNewUser">{{ trans('index.register') }}</button>
 
             {!! Form::close() !!}
 

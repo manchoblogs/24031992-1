@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Kayıtlarımızda bıyle bir üyelik bulunamadı.',
+    'failed' => 'Kayıtlarımızda böyle bir üyelik bulunamadı.',
     'throttle' => '',
 
     'congratz' => 'Tebrikler',

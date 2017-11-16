@@ -34,26 +34,26 @@ return [
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
-
+//url().
    'facebook' => [
       'client_id'     => env('CONF_facebookapp'),
       'client_secret' => env('CONF_facebookappsecret'),
-      'redirect'      => url().'/auth/social/facebook/callback',
+      'redirect'      => url('/auth/social/facebook/callback'),
    ],
     'twitter' => [
       'client_id'     => env('CONF_twitterapp'),
       'client_secret' => env('CONF_twitterappsecret'),
-      'redirect'      => url().'/auth/social/twitter/callback',
+      'redirect'      => url('/auth/social/twitter/callback'),
    ],
     'google' => [
       'client_id'     => env('CONF_googleapp'),
       'client_secret' => env('CONF_googleappsecret'),
-      'redirect'      => url().'/auth/social/google/callback',
+      'redirect'      => url('/auth/social/google/callback'),
    ],
     'vkontakte' => [
       'client_id'     => env('CONF_VKONTAKTE_KEY'),
       'client_secret' => env('CONF_VKONTAKTE_SECRET'),
-      'redirect'      => url().'/auth/social/vkontakte/callback',
+      'redirect'      => url('/auth/social/vkontakte/callback'),
    ],
 ];
 

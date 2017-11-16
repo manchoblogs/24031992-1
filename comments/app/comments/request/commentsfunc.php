@@ -87,7 +87,7 @@ $veri="";
 
 	// Sayfalama 
 
-$satir_sayisi  = $dbpdo->query("SELECT count(*) from comments where content_id = '".$commentcontent_id."' and domainaccess = '".$domainaccess."'  and approve = '1'")->fetchColumn();
+$satir_sayisi  = $dbpdo->query("SELECT count(*) from comments where content_id = '".$commentcontent_id."'  and approve = '1'")->fetchColumn();
 $sayfa          = $sayfaid; 
 $limit          = $db_commentsnumberperpage; 
 $sayfa_sayisi = ceil( $satir_sayisi / $limit ); 
@@ -118,7 +118,7 @@ if($commentdesc=="populer"){
 				SELECT * from (
 				SELECT 
 				A.*, (SELECT COUNT(*) FROM likes B where B.content_id=A.id and B.likestype = 'comment' and B.typelike = 'like') AS memberCount
-				FROM comments A where A.content_id='$commentcontent_id' and A.approve = '1' 
+				FROM comments A where A.content_id='$commentcontent_id' and A.approve = '1' and A.domainaccess = '$domainaccess'
 				) T  
 			 ORDER BY T.memberCount DESC
 			limit $goster, $limit");

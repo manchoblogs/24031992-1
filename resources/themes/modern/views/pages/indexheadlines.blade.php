@@ -1,18 +1,6 @@
 
 @unless(count($lastFeaturestop)==0)
-    @if($cat== true)
-        <div class="headline-cats clearfix">
-            <div class="global-container container" >
-                <h1 style="float:left;margin:5px 0">{{ trans('index.'.$category->name_slug) == 'index.'.$category->name_slug ? $category->name :  trans('index.'.$category->name_slug) }} </h1>
 
-                @foreach(\App\Categories::where('type', $category->id)->orderBy('name')->groupBy('name')->get() as $cat)
-
-                    <a class="cat_link"  data-type="{{ $cat->name_slug }}" href="/{{ $cat->name_slug }}"> {{ $cat->name }}</a>
-
-                @endforeach
-            </div>
-        </div>
-    @endif
 <section class="headline hide-phone">
     <div class="global-container container" style="padding-top:0 !important;">
         <div style="margin-left:-4px; margin-right:-3px;">

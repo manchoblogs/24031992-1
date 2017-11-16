@@ -53,6 +53,7 @@
                         {!! Form::select('NavbarType', ['navbar-fixed' => trans('admin.Fixed'),'mode-relative' => trans('admin.Relative')], getenvcong('NavbarType'), ['class' => 'form-control'])  !!}
 
                     </div>
+
                     <hr>
                     <div class="form-group">
                         <label>{{ trans('admin.SiteBackgroundColor') }}</label>
@@ -161,7 +162,7 @@
 
     </div><!-- /.row -->
 
-  @elseif($theme['t_code'] == 'modern')
+  @elseif($theme['t_code'] == 'modern' or $theme['t_code'] == 'viralmag' or $theme['t_code'] == 'boxed' or $theme['t_code'] == 'buzzyfeed' )
         <div class="row">
             <div class="col-md-6 col-lg-6">
                 <div class="panel panel-primary">
@@ -186,7 +187,23 @@
                         <div class="form-group">
                             <label class="control-label">Homepage Headline Style</label>
                             <div class="controls">
-                                {!! Form::select('T_1_SiteHeadlineStyle', ['1' => 'Style 1 - Boxes', '2' => 'Style 2 - Slider Type'], getenvcong('T_1_SiteHeadlineStyle'), ['class' => 'form-control'])  !!}
+                                {!! Form::select('T_1_SiteHeadlineStyle', ['1' => 'Style 1 - Boxes', '3' => 'Style 2 - Boxes', '4' => 'Style 3 - Tall Boxes', '5' => 'Style 4 - Two Big Boxes', '2' => 'Style 5 - Slider Type', 'off' => 'No Headline Post'], getenvcong('T_1_SiteHeadlineStyle'), ['class' => 'form-control'])  !!}
+
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label class="control-label">Category Pages Headline Style</label>
+                            <div class="controls">
+                                {!! Form::select('T_1_CatHeadlineStyle', ['1' => 'Style 1 - Boxes', '3' => 'Style 2 - Boxes', '4' => 'Style 3 - Tall Boxes', '5' => 'Style 4 - Two Big Boxes', '2' => 'Style 5 - Slider Type', 'off' => 'No Headline Post'], getenvcong('T_1_CatHeadlineStyle'), ['class' => 'form-control'])  !!}
+
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label class="control-label">Post Page AutoLoad Style</label>
+                            <div class="controls">
+                                {!! Form::select('PostPageAutoload', ['autoload' => 'Autoload Next Post', 'related' => 'Show only "You may also like" section'], getenvcong('PostPageAutoload'), ['class' => 'form-control'])  !!}
 
                             </div>
                         </div>
@@ -201,6 +218,7 @@
                             </div><!-- /.input group -->
                         </div>
                         <hr>
+
                         <div class="form-group">
                             <label>{{ trans('admin.NavbarBackgroundColor') }}</label>
                             <div class="input-group my-colorpicker2 colorpicker-element">
@@ -210,6 +228,27 @@
                                 </div>
                             </div><!-- /.input group -->
                         </div>
+                        <hr>
+                        @if($theme['t_code'] == 'viralmag' or $theme['t_code'] == 'boxed')
+                        <div class="form-group">
+                            <label>Menu {{ trans('admin.NavbarBackgroundColor') }}</label>
+                            <div class="input-group my-colorpicker2 colorpicker-element">
+                                <input type="text" name="T_1_NavbarMenuBC" class="form-control" value="{{  getenvcong('T_1_NavbarMenuBC') }}">
+                                <div class="input-group-addon">
+                                    <i style="background-color: {{  getenvcong('T_1_NavbarMenuBC') }};"></i>
+                                </div>
+                            </div><!-- /.input group -->
+                        </div>
+                            <div class="form-group">
+                            <label>Menu Mobile Toogle Icon Color</label>
+                            <div class="input-group my-colorpicker2 colorpicker-element">
+                                <input type="text" name="T_1_NavbarMenuToogleC" class="form-control" value="{{  getenvcong('T_1_NavbarMenuToogleC') }}">
+                                <div class="input-group-addon">
+                                    <i style="background-color: {{  getenvcong('T_1_NavbarMenuToogleC') }};"></i>
+                                </div>
+                            </div><!-- /.input group -->
+                        </div>
+                        @endif
                         <div class="form-group">
                             <label>{{ trans('admin.NavbarTop3PixelBorderLineColor') }}</label>
                             <div class="input-group my-colorpicker2 colorpicker-element">
@@ -274,7 +313,14 @@
                             </div><!-- /.input group -->
                         </div>
 
+                        <hr>
+                        <div class="form-group">
+                            <H3>
+                                {{ trans('admin.UseRight-to-LeftLanguageSupport') }}
+                            </H3>
+                            {!! Form::select('languagetype', ['rtl' => trans('admin.yes'), '' => trans('admin.no')], getenvcong('languagetype'), ['class' => 'form-control'])  !!}
 
+                        </div>
                     </div>
                 </div>
 

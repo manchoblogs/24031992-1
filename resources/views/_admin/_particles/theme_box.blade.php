@@ -4,6 +4,7 @@
     </div>
     <!-- Add the bg color to the header using any of the bg-* classes -->
     <div class="widget-user-header  bg-default" style=" height: auto;background: #FBFBFB;padding: 10px;">
+        @if($t_price!='soon')<span class="pull-right badge bg-red" style="float:none;position:absolute;right:20px;top:20px;  box-shadow: 0 2px 3px rgba(0,0,0,.5);margin:0">v.{{ $t_version }}</span>@endif
         <img style="width:100%;height:auto" src="{{ $t_icon }}" alt="{{ $t_name }}">
     </div>
 

@@ -53,7 +53,8 @@ $uniquid = time().$lfld ;
         <div class="clearfix"></div>
 
         <div id="answer{{ $uniquid }}" class="answers clearfix @if(isset($entry->video)) @if($entry->video == '1')thdefault @else {{  $entry->video == "2" ?  'thlarge' : 'thlist' }}@endif @else thlist @endif"  style="border-radius:0;border:0;padding:0;margin:0;margin-left:-15px;background: transparent;">
-            @if(empty($entry->image))
+
+            @if(!isset($entry))
 
                 @include('_forms._buzzypoll.__addanswerform')
 
@@ -63,12 +64,10 @@ $uniquid = time().$lfld ;
 
             @else
 
-                @foreach($post->entry()->where('type', 'answer')->where('source', $entry->id)->orderBy('order')->get() as $keya => $answers)
-
-
-                    @include('_forms._buzzypoll.__addanswerform', ['entry' =>  $answers])
-
-
+                @foreach($post->entry()->where('type', 'answer')->where('source', (int)$entry->id)->orderBy('order')->get() as $answeras)
+                @if(isset($answeras))
+                    @include('_forms._buzzypoll.__addanswerform', ['answer' =>  $answeras])
+                @endif
                 @endforeach
 
             @endif

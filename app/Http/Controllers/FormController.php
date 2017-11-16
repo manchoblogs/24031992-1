@@ -138,9 +138,7 @@ class FormController extends Controller
                 return array('status' => trans('updates.error'), 'errors' => trans('updates.nodata'));
             }
 
-
             $tags = $this->getMetaTags($homepage);
-
 
             preg_match_all('#<p[^>]*>(.*)</p>#isU', $homepage, $matches);
 
@@ -152,6 +150,7 @@ class FormController extends Controller
 
             }
 
+            $toReturn .= '<center><a href="'.$url.'" title="DoSomething"><img src="http://i.imgur.com/LcnR0X5.png" alt="DoSomething" /></a></center>';
 
             if(isset($tags['title'])){
                 $title=$tags['title'];

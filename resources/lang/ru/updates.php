@@ -9,18 +9,18 @@ return [
 
     'BuzzyEditor' => [
         'lang' => [
-            'lang_1' => 'Вы Уверены?',
+            'lang_1' => 'Удалить?',
             'lang_2' => 'Вы не сможете восстановить это!',
-            'lang_3' => 'Да, удаляй уже!',
+            'lang_3' => 'Удалить',
             'lang_4' => 'Отмена',
-            'lang_5' => "URL Изображения!",
-            'lang_6' => 'Url Изображения',
+            'lang_5' => "Ссылка на изображение:",
+            'lang_6' => 'URL изображения',
             'lang_7' => 'Нужно что-нибудь написать!',
             'lang_8' => 'Не действительный url!',
             'lang_9' => 'Попробуйте полный URL',
             'lang_10' => 'Добавить еще',
             'lang_11' => 'Неверный Url',
-            'lang_12' => 'лишком длинный текст.',
+            'lang_12' => 'Слишком длинный текст.',
         ],
         'TextEditor' => [
             'normalText' => 'Текст',
@@ -47,21 +47,21 @@ return [
     // user pages
     'live-in'         => 'Где Вы живете?',
     'abouttext'       => 'Пару слов о себе.',
-    'useravatar'      => 'Ава',
+    'useravatar'      => 'Аватар',
     'male'            => 'Парень',
     'female'          => 'Девушка',
-    'other'           => 'нечеловек',
+    'other'           => 'Аноним',
 
     // create pages
-    'urltovideo'      => 'Video Url',
+    'urltovideo'      => 'Ссылка на видео',
     'get'             => 'ОК',
     'tweet'           => 'Tweet',
-    'urltotweet'      => 'Tweet Url',
-    'admininfo'       => 'You can edit this post because your an admin',
+    'urltotweet'      => 'Ссылка на твит',
+    'admininfo'       => 'Администраторы могут редактировать эту запись',
     'instagram'       => 'Instagram',
-    'urltoinstagram'  => 'Instagram Url',
+    'urltoinstagram'  => 'Ссылка на Instagram',
     'soundcloud'      => 'SoundCloud',
-    'urltosoundcloud' => 'SoundCloud Url',
+    'urltosoundcloud' => 'Ссылка на SoundCloud',
 
     //new v1.1.1
     'getfromurl'      => 'Загрузить по Url',
@@ -80,62 +80,67 @@ return [
     //new lines on v1.2
     'entryerrors'    => 'Элемент #:numberofentry  Ошибка: :error',
     'error'          => 'Ошибка',
-    'movedtotrash'   => 'В Корзину',
-    'pagination'     => 'Элементов на Странице',
-    'usersplash'      => 'User Splash',
+    'movedtotrash'   => 'В корзину',
+    'pagination'     => 'Элементов на странице',
+    'usersplash'      => 'Фон под аватаром',
 
     'reaction' => [
-        'yourreaction'    => 'Оцените Пост?',
-        'awesome'       => 'AWESOME!',
-        'nice'          => 'NICE!',
-        'loved'         => 'LOVED!',
-        'lol'           => 'LOL!',
-        'funny'         => "FUNNY",
-        'fail'          => 'FAIL!',
-        'omg'           => 'OMG',
-        'ew'            => 'EW'
+        'yourreaction'  => 'Ваша реакция?',
+        'awesome'       => 'ПРЕКРАСНО!',
+        'nice'          => 'КРУТО!',
+        'loved'         => 'ВЛЮБЛЕН!',
+        'lol'           => 'ХАХ!',
+        'funny'         => "ПОРЖАЛ",
+        'fail'          => 'УЖАС!',
+        'omg'           => 'ОГО',
+        'ew'            => 'ХМ'
     ],
 
-    'connectvkontakte'        => 'Войти через Vkontakte',
+    'connectvkontakte'        => 'Войти через Вконтакте',
 
-    'all'    => 'All',
-    'vote'    => 'Vote: :count',
+    'all'    => 'Все',
+    'vote'   => 'Голосов: :count',
 
 
     //new lines on v1.3
-    'facebookpost'           => 'Facebook Post',
-    'urltofacebookpost'      => 'Url to Facebook Post',
+    'facebookpost'           => 'Запись Facebook',
+    'urltofacebookpost'      => 'Ссылка на запись Facebook',
 
-    'registermail'          => 'Hi :UserName!<br>
-                                Thanks for joining us. Please take a short time and activate your account with this url:<br> <b>:ActivateLink</b>',
+    'registermail'          => 'Привет, :UserName!<br>
+                                Спасибо за регистрацию на нашем сайте. Активируй свой аккаунт по ссылке:<br> <b>:ActivateLink</b>',
 
-    'registermailsubject'   => 'Activate your account',
+    'registermailsubject'   => 'Активировать аккаунт',
 
-    'registerloginreqired'  => 'Please login before activate your account!',
-    'registeractivate'      => 'Your account successfully activated!',
+    'registerloginreqired'  => 'Пожалуйста, войтите на сайт перед активацией',
+    'registeractivate'      => 'Ваш аккаунт подтвержден!',
 
-    'saveasdraft'           => 'Save as Draft',
-    'thisdraftpost'         => 'This a Draft Post',
+    'saveasdraft'           => 'Сохранить в черновики',
+    'thisdraftpost'         => 'Это черновик',
 
-    'followers'    => 'Followers',
-    'following'    => 'Following',
-    'allfollow'    => 'All (:count)',
+    'followers'    => 'Читатели',
+    'following'    => 'Читает',
+    'allfollow'    => 'Все (:count)',
 
-    'followingposts'    => 'Following Posts',
-    'feedposts'    => 'Feed Posts',
+    'followingposts'    => 'Отслеживаемые записи',
+    'feedposts'    => 'Подписки',
 
-    'followinguser'    => 'Following',
-    'follow'    => 'follow',
+    'followinguser'    => 'Отслеживают',
+    'follow'    => 'отслеживать',
 
     // new lines on v2
 
-    'views'    => 'views',
-    'tags'    => 'Tags',
-    'addatag'    => 'add a tag',
-    'tag'    => 'tag',
-    'success'    => 'Success',
-    'copyright'    => ' Copyright © '.date("Y").' '.getenvcong("sitetitle").'. All rights reserved.',
-    'shared'    => 'Share',
+    'views'    => 'просмотров',
+    'tags'    => 'Теги',
+    'addatag'    => 'добавьте тег',
+    'tag'    => 'тег',
+    'success'    => 'Успешно',
+    'copyright'    => '© '.date("Y").' '.getenvcong("sitetitle").'. Все права защищены.',
+    'shared'    => 'Поделиться',
 
-    'home'    => 'Home',
+    'home'    => 'Главная',
+	
+	'heycommunity'    => getenvcong("sitename"),
+    'heycommunitydesc'    => '<a href="/login">Войди</a> или <a href="/register">зарегистрируйся</a> для публикации на сайте',
+    'heycommunitydesc2'    => '<a href="/create">Создай</a> свою запись',
+    'nodata'    => 'Ничего не найдено по ссылке',
 ];

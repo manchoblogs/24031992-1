@@ -70,8 +70,6 @@ if(isset($_GET["C_id"])){
 }
 
 
-$stringim = "[ayrac1]elma[/ayrac1][ayrac2]armut[/ayrac2][ayrac1]muz[/ayrac1][ayrac2]kiraz[/ayrac2]";
-
 
 
 function BetweenStr($InputString, $StartStr, $EndStr=0, $StartLoc=0) {
@@ -91,7 +89,7 @@ $CUSER="";
 
 if(isset($_GET["user"])){
 
-	$userhashin = base64_decode($_GET["user"]);
+	$userhashin = urldecode (base64_decode($_GET["user"]));
 
 
 	$CUSER_ID = BetweenStr($userhashin,"CUSER_ID=","&");

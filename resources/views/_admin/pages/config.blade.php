@@ -28,10 +28,11 @@
                                {{ trans('admin.SitePostsUrlType') }}
                             </label>
                             {!! Form::select('siteposturl', [
-                            '1' => 'yoursite.com/{type}/{slug} (Default)',
-                            '2' => 'yoursite.com/{type}/{id}',
+                            '1' => 'yoursite.com/{category}/{slug} (Default)',
+                            '2' => 'yoursite.com/{category}/{id}',
                             '3' => 'yoursite.com/{username}/{slug}',
-                            '4' => 'yoursite.com/{username}/{id}'
+                            '4' => 'yoursite.com/{username}/{id}',
+                            '5' => 'yoursite.com/{category}/{slug}-{id}'
                              ], getenvcong('siteposturl'), ['class' => 'form-control'])  !!}
 
                         </div>
@@ -76,7 +77,21 @@
                             <span class="help-block">{{ trans('admin.Auto-LoadonListshelp') }}</span>
                         </div>
                         <hr>
+                        <div class="form-group">
+                            <label class="control-label">Reaction Vote Count </label>
+                            <div class="controls">
+                                <input type="text" class="form-control input-lg" name="showreactioniconon" value="{{  getenvcong('showreactioniconon') }}">
+                            </div>
+                            <span class="help-block">Add number of reaction voting count to show icon on posts</span>
+                        </div>
 
+                        <div class="form-group">
+                            <label class="control-label">Show Preview Image on Post Page</label>
+                            <div class="controls">
+                                {!! Form::select('PostPreviewShow', ['yes' => trans('admin.yes'),'no' => trans('admin.no')], getenvcong('PostPreviewShow'), ['class' => 'form-control'])  !!}
+                            </div>
+                        </div>
+                        <HR>
                         <H3>{{ trans('admin.UserPermissions') }}</H3>
                         <div class="form-group">
                             <label>
@@ -436,6 +451,7 @@
                         </div>
                     </div>
                     <hr>
+
                     <div class="form-group">
                         <label class="control-label">{{ trans('admin.SiteLanguageCountryCodes') }}</label>
                         <div class="controls">
@@ -528,7 +544,40 @@
 
         </div><!-- /.col -->
     </div><!-- /.row -->
+
     <div class="row">
+
+        <div class="col-md-6 col-lg-6">
+
+            <div class="panel panel-info">
+                <div class="panel-heading">Use Google reCaptcha on login, register, contact form</div>
+                <div class="panel-body form-horizontal">
+                    <div class="form-group">
+                        <label for="facebookapp" class="col-sm-2 control-label">{!! trans("admin.Usecaptchaoncontactform")  !!}</label>
+                        <div class="col-sm-10">
+                            {!! Form::select('BuzzyContactCaptcha', ['on' => trans("admin.yes"), 'off' => trans("admin.no")], getenvcong('BuzzyContactCaptcha'), ['class' => 'form-control'])  !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="facebookappsecret" class="col-sm-2 control-label">App ID</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control input-lg" name="reCaptchaKey" value="{{  getenvcong('reCaptchaKey') }}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="facebookappsecret" class="col-sm-2 control-label">App SECRET</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control input-lg" name="reCaptchaSecret" value="{{  \Auth::user()->email == 'demo@admin.com' ?  trans("admin.youPERMISSION") : getenvcong('reCaptchaSecret')  }}">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+
+        <div class="row">
 
         <div class="col-md-6 col-lg-6">
 

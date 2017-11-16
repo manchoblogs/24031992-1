@@ -66,22 +66,50 @@ class PagesController extends Controller
 
         $this->cat= $catname;
 
+        $categories = Categories::where("name_slug", $catname)->get();
         $category = Categories::where("name_slug", $catname)->first();
-
-
         if(!isset($category)){
+            return redirect('/404');
+        }
+        if(!isset($categories)){
            return redirect('/');
         }
+        $categoryarray=array();
+        foreach($categories as $categor){
+           array_push($categoryarray, $categor->id);
+        }
+        $this->categoryarray = $categoryarray;
 
-        $lastItems = Posts::where('categories', 'LIKE',  '%"'.$category->id.',%')->where('deleted_at', NULL)->approve('yes')->orWhere('categories', 'LIKE',  '%,'.$category->id.',%')->where('deleted_at', NULL)->approve('yes')
-            ->latest("published_at")->paginate(15);
+        $lastItems = Posts::where(function($query){
+            foreach($this->categoryarray as $kk => $value){
+
+                    if($kk==0){
+                        $query->where('categories', 'LIKE',  '%"'.$value.',%')->orWhere('categories', 'LIKE',  '%,'.$value.',%');
+                    }else{
+                        $query->orWhere('categories', 'LIKE',  '%"'.$value.',%')->orWhere('categories', 'LIKE',  '%,'.$value.',%');
+                    }
+
+                }
+             })
+            ->where('deleted_at', NULL)->approve('yes')
+            ->latest("published_at")->paginate(16);
 
         $lastFeaturestop=[];
-        if($category->main=="1"){
+
         //top Features
-        $lastFeaturestop = Posts::where('type', $category->type)
-            ->where("featured_at", '>', '')->latest("featured_at")->approve('yes')->take(10)->get();
-        }
+        $lastFeaturestop = Posts::where(function($query){
+            foreach($this->categoryarray as $kk => $value){
+
+                if($kk==0){
+                    $query->where('categories', 'LIKE',  '%"'.$value.',%')->orWhere('categories', 'LIKE',  '%,'.$value.',%');
+                }else{
+                    $query->orWhere('categories', 'LIKE',  '%"'.$value.',%')->orWhere('categories', 'LIKE',  '%,'.$value.',%');
+                }
+
+            }
+        })->where("featured_at", '>', '')
+            ->latest("featured_at")->approve('yes')->take(10)->get();
+
 
         $lastTrending = Posts::approve('yes')->typesActivete()->where('type', $category->type)->getStats('seven_days_stats', 'DESC', 7)->get();
 
@@ -141,7 +169,7 @@ class PagesController extends Controller
      * @param Request $req
      * @return \BladeView|bool|\Illuminate\View\View
      */
-    public function showReaction($reaction)
+    public function showReaction($reaction_id)
     {
 
 
@@ -150,7 +178,7 @@ class PagesController extends Controller
             ->leftJoin('reactions', function($leftJoin){
                 $leftJoin->on('reactions.post_id', '=', 'posts.id');
             })
-            ->where('reactions.reaction_type', '=', $reaction)
+            ->where('reactions.reaction_type', '=', $reaction_id)
             ->typesActivete()
             ->approve('yes')
             ->orderBy(DB::raw('COUNT(reactions.post_id) '), 'desc')
@@ -161,7 +189,14 @@ class PagesController extends Controller
             abort('404');
         }
 
+        $reaction = \App\Reaction::where('reaction_type', $reaction_id)->first();
+
+
         return view("pages.showreactions", compact("lastItems", "reaction"));
     }
 
+    public function dort()
+    {
+        return view("errors.404");
+    }
 }

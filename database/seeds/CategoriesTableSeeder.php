@@ -125,6 +125,29 @@ class CategoriesTableSeeder extends Seeder
             'disabled' => '0',
             'main' => '0',
         ]);
+        DB::table('categories')->insert([
+            'order' => '',
+            'name' => 'Advertisement',
+            'name_slug' => 'advertisement',
+            'posturl_slug' => '',
+            'icon' => '',
+            'description' => '#B77528',
+            'type' => 'maillabel',
+            'disabled' => '0',
+            'main' => '0',
+        ]);
+
+        DB::table('categories')->insert([
+            'order' => '',
+            'name' => 'Other',
+            'name_slug' => 'other',
+            'posturl_slug' => '',
+            'icon' => '',
+            'description' => '#B22D5B',
+            'type' => 'maillabel',
+            'disabled' => '0',
+            'main' => '0',
+        ]);
 
     }
 }

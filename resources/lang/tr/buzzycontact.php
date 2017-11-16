@@ -11,17 +11,17 @@ return [
     'contact'                   => 'İletişim',
     'subject'                   => 'Başlık',
     'description'               => 'Açıklama',
-    'descriptioninfo'           => 'Please enter the details of your request.',
-    'name'                      => 'Tell us your name',
-    'nameinfo'                  => 'Please enter your full name',
-    'email'                     => 'Your email address',
-    'label'                     => 'Let\'s pick a section?',
-    'labelinfo'                 => 'Please take a moment to carefully select. An accurate selection can speed up your response!',
-    'successgot'                => 'We\'ve got your contact form. We will contact you as soon as possible.',
+    'descriptioninfo'           => 'Lütfen detaylı bir açıklama giriniz..',
+    'name'                      => 'İsim Soyisim',
+    'nameinfo'                  => 'Lüften tam ismini yazınız',
+    'email'                     => 'Email adresiniz?',
+    'label'                     => 'Bir departman seçiniz?',
+    'labelinfo'                 => 'Lütfen uygun bir departman seçiniz. ',
+    'successgot'                => 'Başarılı bir şekilde mesajınızı aldık.',
 
   //recaptcha
-    'areyouhuman'               => 'Please verify that you are human',
-    'yourresponseincorrect'     => 'The reCAPTCHA was not entered correctly. Go back and try it again.',
+    'areyouhuman'               => 'Lütfen insan olduğunuzu doğrulayınız',
+    'yourresponseincorrect'     => 'Güvenlik kodu başarısız oldu. Lütfen geri gidip tekrar deneyiniz.',
 
 
     'send'                      => 'Gönder',

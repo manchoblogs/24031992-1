@@ -10,34 +10,34 @@
             <div class="content-sticky">
 
                 <div class="content-share">
-                    <a class="content-share__item facebook buzz-share-button" data-share-type="facebook" data-type="news" data-id="{{ $post->id }}" data-post-url="/shared" data-title="{{ $post->title }}" data-sef="{{ makeposturl($post) }}">
+                    <a class="content-share__item facebook buzz-share-button" data-share-type="facebook" data-type="news" data-id="{{ $post->id }}" data-post-url="/shared" data-title="{{ $post->title }}" data-sef="{{  makeposturl($post) }}">
                         <div class="content-share__icon facebook-white"></div>
                         @if(isset($post->shared->facebook))
-                        <div class="content-share__badge buzz-share-badge-facebook {{ $post->shared->facebook > 0 ? 'is-visible': ''}} hide-phone">{{ $post->shared->facebook }}</div>
+                            <div class="content-share__badge buzz-share-badge-facebook {{ $post->shared->facebook > 0 ? 'is-visible': ''}} hide-phone">{{ $post->shared->facebook }}</div>
                         @endif
                     </a>
-                    <a class="content-share__item twitter buzz-share-button" data-share-type="twitter" data-type="news" data-id="{{ $post->id }}" data-post-url="/shared" data-title="{{ $post->title }}" data-sef="{{ makeposturl($post) }}">
+                    <a class="content-share__item twitter buzz-share-button" data-share-type="twitter" data-type="news" data-id="{{ $post->id }}" data-post-url="/shared" data-title="{{ $post->title }}" data-sef="{{  makeposturl($post)  }}">
                         <div class="content-share__icon twitter-white"></div>
                         @if(isset($post->shared->twitter))
-                        <div class="content-share__badge buzz-share-badge-twitter {{ $post->shared->twitter > 0 ? 'is-visible': ''}} hide-phone">{{ $post->shared->twitter }}</div>
+                            <div class="content-share__badge buzz-share-badge-twitter {{ $post->shared->twitter > 0 ? 'is-visible': ''}} hide-phone">{{ $post->shared->twitter }}</div>
                         @endif
                     </a>
                     <a class="content-share__item gplus buzz-share-button" data-type="news" data-id="{{ $post->id }}" data-share-type="gplus" data-post-url="/shared" data-title="{{ $post->title }}" data-sef="{{ makeposturl($post) }}">
                         <div class="content-share__icon gplus-white"></div>
                         @if(isset($post->shared->gplus))
-                        <div class="content-share__badge buzz-share-badge-gplus {{ $post->shared->gplus > 0 ? 'is-visible': ''}} hide-phone">{{ $post->shared->gplus }}</div>
+                            <div class="content-share__badge buzz-share-badge-gplus {{ $post->shared->gplus > 0 ? 'is-visible': ''}} hide-phone">{{ $post->shared->gplus }}</div>
                         @endif
                     </a>
-                    <a class="content-share__item whatsapp buzz-share-button visible-phone" data-type="news" data-id="{{ $post->id }}" data-share-type="whatsapp" data-post-url="/shared" data-title="{{ $post->title }}" data-sef="{{ makeposturl($post) }}">
+                    <a class="content-share__item whatsapp buzz-share-button visible-phone" data-type="news" data-id="{{ $post->id }}" data-share-type="whatsapp" data-post-url="/shared" data-title="{{ $post->title }}" data-sef="{{  makeposturl($post) }}">
                         <div class="content-share__icon whatsapp-white"></div>
                         @if(isset($post->shared->whatsapp))
-                        <div class="content-share__badge buzz-share-badge-whatsapp {{ $post->shared->whatsapp > 0 ? 'is-visible': ''}} hide-phone">{{ $post->shared->whatsapp }}</div>
+                            <div class="content-share__badge buzz-share-badge-whatsapp {{ $post->shared->whatsapp > 0 ? 'is-visible': ''}} hide-phone">{{ $post->shared->whatsapp }}</div>
                         @endif
                     </a>
-                    <a class="content-share__item mail buzz-share-button" data-type="news" data-id="{{ $post->id }}" data-share-type="mail" data-post-url="/shared" data-title="{{ $post->title }}" data-sef="{{ makeposturl($post) }}">
+                    <a class="content-share__item mail buzz-share-button" data-type="news" data-id="{{ $post->id }}" data-share-type="mail" data-post-url="/shared" data-title="{{ $post->title }}" data-sef="{{   makeposturl($post) }}">
                         <div class="content-share__icon mail-white"></div>
                         @if(isset($post->shared->mail))
-                        <div class="content-share__badge buzz-share-badge-mail {{ $post->shared->mail > 0 ? 'is-visible': ''}} hide-phone">{{ $post->shared->mail }}</div>
+                            <div class="content-share__badge buzz-share-badge-mail {{ $post->shared->mail > 0 ? 'is-visible': ''}} hide-phone">{{ $post->shared->mail }}</div>
                         @endif
                     </a>
                 </div>
@@ -86,14 +86,14 @@
                     @endif
                   </div>
             @endcan
-
-            <figure style="display: none" class="content-body__image" itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject">
+            @if(getenvcong('PostPreviewShow')=='yes')
+            <figure class="content-body__image" itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject">
                 <img class="lazy" data-original="{{ makepreview($post->thumb, 'b', 'posts') }}" alt="{{ $post->title }}" width="788" style="display: block;">
                 <meta itemprop="url" content="{{ makepreview($post->thumb, 'b', 'posts') }}">
                 <meta itemprop="width" content="788">
                 <meta itemprop="height" content="443">
             </figure>
-
+            @endif
             <div class="content-info">
                 <div class="clearfix" itemprop="author" itemscope="" itemtype="http://schema.org/Person" >
 
@@ -146,7 +146,7 @@
                         <?php $postatpe=\App\Categories::where("type", $post->type)->first();
                         $postacatpe=getfirstcat($post->categories);
                         ?>
-                        {!! isset($post->categories) ? '<a href="'. action('PagesController@showCategory', ['id' => $postacatpe->name_slug ]).'" class="seca"> '.$postacatpe->name. '</a>' : '' !!} {!! isset($postatpe) ? '<a href="'.action('PagesController@showCategory', ['id' => $postatpe->name_slug ]) .'" style="margin-right:5px"> '.$postatpe->name. '</a>' : '' !!}
+                        {!! isset($post->categories)  && isset($postacatpe) ? '<a href="'. action('PagesController@showCategory', ['id' => $postacatpe->name_slug ]).'" class="seca"> '.$postacatpe->name. '</a>' : '' !!} {!! isset($postatpe) ? '<a href="'.action('PagesController@showCategory', ['id' => $postatpe->name_slug ]) .'" style="margin-right:5px"> '.$postatpe->name. '</a>' : '' !!}
                     </div>
 
                     @endif
@@ -181,6 +181,20 @@
 
             @include("_forms._reactionforms")
 
+
+            @if(getenvcong('PostPageAutoload') == 'related')
+                @if(isset($lastFeatures))
+                    @if(count($lastFeatures) >= 3)
+                            <br>
+                        <div class="colheader">
+                            <h1>{{ trans('index.maylike') }}</h1>
+                        </div>
+                        @include("_particles.lists.may-like-posts")
+                    @endif
+                @endif
+            @endif
+
+
             @if(isset($commentson))
             <div class="content-comments">
                 <div class="content-comments">
@@ -201,7 +215,7 @@
 
                         var easyComment_userid = '{{ Auth::check() ? Auth::user()->id : '' }}';
                         var easyComment_username = '{{ Auth::check() ? Auth::user()->username : '' }}';
-                        var easyComment_usericon = '{{ Auth::check() ? url(makepreview(Auth::user()->icon, 's', 'members/avatar')) : '' }}';
+                        var easyComment_usericon = '{{ Auth::check() ? url(makepreview(Auth::user()->icon, 's', 'members/avatar')) : url(makepreview('', 's', 'members/avatar')) }}';
                         var easyComment_profillink = '{{ Auth::check() ? action('UsersController@index', [Auth::user()->username_slug ]) : '' }}';
 
                         var easyComment_Domain = '{{ getenvcong('easyCommentcode') }}';
@@ -258,7 +272,7 @@
                     @endif
 
                 </div>
-
+                @if($post->approve == 'yes')
                 <style> .fb_dialog{z-index:999999999} </style>
                 <div id="fb-root"></div>
                 <script>(function(d, s, id) {
@@ -268,7 +282,7 @@
                         js.src = "//connect.facebook.net/{{  getenvcong('sitelanguage') > "" ? getenvcong('sitelanguage') : 'en_US' }}/sdk.js#xfbml=1{!! getenvcong('facebookapp') > "" ? '&appId='.getenvcong('facebookapp') : '' !!}&version=v2.7";
                         fjs.parentNode.insertBefore(js, fjs);
                     }(document, 'script', 'facebook-jssdk'));</script>
-
+                @endif
             </div>
             @endif
 

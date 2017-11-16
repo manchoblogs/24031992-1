@@ -761,7 +761,7 @@
     Use, by you or one client, in a single end product which end users <b>can be</b> charged for. The total price inresurces
   <br>
   <br>
-  <a class="btn btn-primary" href="http://codecanyon.net/item/buzzy-news-viral-lists-polls-and-videos/13300279?ref=akbilisim">Buy Now!</a>
+  <a class="btn btn-primary" href="http://codecanyon.net/item/buzzy-news-viral-lists-polls-and-videos/13300279">Buy Now!</a>
 
   </p>
 </section><!-- /#introduction -->

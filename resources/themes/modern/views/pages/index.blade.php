@@ -1,17 +1,14 @@
 @extends("app")
-
+@section('header')
+        <link rel="amphtml" href="{{ url('amp') }}">
+@endsection
 @section("content")
     <div class="buzz-container">
-       @if(getenvcong('T_1_SiteHeadlineStyle')==2)
-            @include('pages.indexheadlines2', ['cat' => false])
-            @else
-            @include('pages.indexheadlines', ['cat' => false])
-        @endif
+            {{ show_headline_posts($lastFeaturestop) }}
            @include('_particles.ads', ['position' => 'HeaderBelow', 'width' => '728', 'height' => 'auto'])
 
            <div class="global-container container">
             <div class="content">
-
 
                 <div class="content-timeline">
                     <div class="colheader sea">

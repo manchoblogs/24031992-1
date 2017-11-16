@@ -11,13 +11,13 @@ return [
     'title'             => 'Заголовок',
     'titleplace'        => 'Введите название',
     'desc'              => 'Описание',
-    'descplace'         => 'Краткое описание статьи, новости или опроса',
+    'descplace'         => 'Краткое описание материала',
     'entries'           => 'Тип :type',
 
     'listtype'          => 'Статьи',
-    'listasc'           => 'По Возрастанию',
+    'listasc'           => 'По возрастанию',
     'listdesc'          => 'По убыванию',
-    'normallist'        => 'Обычный Список',
+    'normallist'        => 'Обычный список',
 
 
     'option'            => 'Ответ',
@@ -26,8 +26,8 @@ return [
     'video'             => 'Видео',
     'embed'             => 'Код',
 
-    'add'               => 'Еще :type',
-    'edit'               => 'Правка :type',
+    'add'               => 'Добавить :type',
+    'edit'              => 'Правка :type',
 
     'mored'             => 'Дополнительно',
     'lessd'             => 'Скрыть Детали',
@@ -51,6 +51,6 @@ return [
     'createp'           => 'Отправить',
     'cancel'            => 'Отмена',
 
-    'videotips'            => 'Пожалуйста, вставьте URL видео в поле выше. Поддерживаемые сайты: <b>youtube</b>, <b>facebook</b>, <b>dailymotion</b>, <b>vimeo</b>',
+    'videotips'         => 'Вставьте ссылку на видео (поддерживаются <b>YouTube</b>, <b>Facebook</b>, <b>Dailymotion</b>, <b>Vimeo</b>)',
 
 ];

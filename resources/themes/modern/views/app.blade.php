@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ Lang::getLocale() }}"  {{ config('app.language.'.$DB_USER_LANG.'.rtl') == true ? 'dir=rtl' : '' }}>
 <head>
     <title>@yield('head_title', getenvcong('sitetitle'))</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="@yield('head_description', getenvcong('sitemetadesc'))" />
     <meta property="fb:app_id" content="{{  getenvcong('facebookapp') }}" />
-    <meta property="og:type"   content="website" />
-    <meta property="og:site_name" content="{{  getenvcong('sitename') }}">
+    <meta property="og:type" content="@yield('og_type',  'website')" />
+    <meta property="og:site_name" content="{{  str_replace(' ', '', getenvcong('sitename')) }}">
     <meta property="og:title" content="@yield('head_title',  getenvcong('sitetitle'))">
     <meta property="og:description" content="@yield('head_description', getenvcong('sitemetadesc'))">
     <meta property="og:url" content="@yield('head_url', url())">
     <meta property="og:locale" content="{{  getenvcong('sitelanguage') }}">
     <meta property="og:image" content="@yield('head_image', url('/assets/img/logo.png'))" />
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="{{ getenvcong('sitename') }}">
+    <meta name="twitter:site" content="{{ str_replace(' ', '', getenvcong('sitename')) }}">
     <meta name="twitter:title" content="@yield('head_title',  getenvcong('sitetitle'))">
     <meta name="twitter:url" content="@yield('head_url', url())">
     <meta name="twitter:description" content="@yield('head_description', getenvcong('sitemetadesc'))">
@@ -24,7 +24,10 @@
     <link href='https://fonts.googleapis.com/css?family={{  getenvcong('googlefont') }}' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="{{ Theme::asset('/css/plugins.css', null, false) }}">
-    <link type="text/css" rel="stylesheet" href="{{ Theme::asset('/css/application.css', null, false) }}">
+    <?php
+    $googlefont_prefix =  config('app.language.'.$DB_USER_LANG.'.rtl') == true ? '-rtl' : '';
+    ?>
+    <link type="text/css" rel="stylesheet" href="{{ Theme::asset('/css/application'. $googlefont_prefix .'.css', null, false) }}">
 
     <style type="text/css">
         body {
@@ -61,7 +64,7 @@
 
 </head>
 <body class="@yield('modedefault')">
-
+<div id="fb-root"></div>
 @include("_particles.header")
 
 @yield("content")
@@ -75,7 +78,7 @@
         App.init();
     });
 </script>
-
+@if(getenvcong('facebookapp')>"")
 <script>
     $(function(){
 
@@ -92,19 +95,13 @@
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) {return;}
             js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/tr_TR/sdk.js";
+            js.src = "//connect.facebook.net/{{  getenvcong('sitelanguage') > "" ? getenvcong('sitelanguage') : 'en_US' }}/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 
-        $('body').on({
-            click: function() {
-                // facebook save button ajax
-                FB.XFBML.parse();
-            }
-        }, '.facebook-save');
     });
 </script>
-
+@endif
 @yield("footer")
 @include('.errors.swalerror')
 

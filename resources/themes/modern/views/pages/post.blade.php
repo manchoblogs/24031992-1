@@ -1,9 +1,18 @@
 @extends("app")
 @section('head_title',  $post->title.' | '.getenvcong('sitename'))
+@section('og_type', 'article')
 @section('head_description', str_limit(str_replace('"', '', $post->body), 150))
 @section('head_image', url(makepreview($post->thumb, 'b', 'posts')))
 @section('head_url', url(makeposturl($post)))
+@section('header')
+@if($post->type == 'news' || $post->type == 'list'  || $post->type == 'video' )
+<link rel="amphtml" href="{{ url('amp/'.$post->type.'/'.$post->id) }}">
+@endif
+<meta property="og:image:width" content="780" />
+<meta property="og:image:height" content="440" />
+@endsection
 @section("content")
+@if(getenvcong('PostPageAutoload') != 'related')
 <div class="content-header hide-mobile">
     <div class="content-header__container">
         <div class="content-header__container__left">
@@ -21,6 +30,7 @@
         <div class="content-header__progress--container__progress"></div>
     </div>
 </div>
+@endif
 <div class="buzz-container">
     @include('_particles.ads', ['position' => 'HeaderBelow', 'width' => '728', 'height' => 'auto'])
 
@@ -82,13 +92,13 @@
         </script>
     @endif
 
-        <script>
-            $( document ).ready(function() {
-                $('.poll_main_color').each(function(i){
-                    $(this).css('width', $(this).attr('data-percent')+'%');
-                });
+    <script>
+        $( document ).ready(function() {
+            $('.poll_main_color').each(function(i){
+                $(this).css('width', $(this).attr('data-percent')+'%');
             });
-        </script>
+        });
+    </script>
 
     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
@@ -119,8 +129,11 @@
                 }
             }
 
-            $(".news").buzzScroll({item: ".news__item"});
+            @if(getenvcong('PostPageAutoload') != 'related')
 
+                $(".news").buzzScroll({item: ".news__item"});
+
+            @endif
 
         });
 

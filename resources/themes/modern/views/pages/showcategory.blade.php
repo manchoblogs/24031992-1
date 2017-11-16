@@ -5,7 +5,21 @@
 @section("content")
 <div class="buzz-container">
 
-     @include('pages.indexheadlines', ['cat' => true])
+    <div class="global-container container">
+    <div class="headline-cats clearfix">
+
+        <h1 style="float:left;margin:5px 0">{{ trans('index.'.$category->name_slug) == 'index.'.$category->name_slug ? $category->name :  trans('index.'.$category->name_slug) }} </h1>
+
+        @foreach(\App\Categories::where('type', $category->id)->orderBy('name')->groupBy('name')->get() as $cat)
+
+            <a class="cat_link"  data-type="{{ $cat->name_slug }}" href="/{{ $cat->name_slug }}"> {{ $cat->name }}</a>
+
+        @endforeach
+
+    </div>
+    </div>
+    {{ show_headline_posts($lastFeaturestop, true) }}
+
     @include('_particles.ads', ['position' => 'HeaderBelow', 'width' => '728', 'height' => 'auto'])
 
         <div class="global-container container">

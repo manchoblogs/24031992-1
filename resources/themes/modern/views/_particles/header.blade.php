@@ -31,15 +31,10 @@
                                             </div>
 
                                             <div class="reaction-emojis">
-                                                <a href="{{ action('PagesController@showReaction', ['reaction' => 'awesome'] ) }}" title="{{ trans('updates.reaction.awesome') }}" ><img alt="{{ trans('updates.reaction.awesome') }}" src="{{ Theme::asset('img/reactions/awesome.gif', null, false) }} " width="42"></a>
-                                                <a href="{{ action('PagesController@showReaction', ['reaction' => 'nice'] ) }}" title="{{ trans('updates.reaction.nice') }}" ><img alt="{{ trans('updates.reaction.nice') }}" src="{{ Theme::asset('img/reactions/nice.png', null, false) }}" width="42"></a>
-                                                <a href="{{ action('PagesController@showReaction', ['reaction' => 'loved'] ) }}" title="{{ trans('updates.reaction.loved') }}" ><img alt="{{ trans('updates.reaction.loved') }}" src="{{ Theme::asset('img/reactions/loved.gif', null, false) }}" width="42"></a>
-                                                <a href="{{ action('PagesController@showReaction', ['reaction' => 'lol'] ) }}"  title="{{ trans('updates.reaction.lol') }}" ><img alt="{{ trans('updates.reaction.lol') }}" src="{{ Theme::asset('img/reactions/lol.gif', null, false) }}" width="42"></a>
-                                                <a href="{{ action('PagesController@showReaction', ['reaction' => 'funny'] ) }}" title="{{ trans('updates.reaction.funny') }}" ><img alt="{{ trans('updates.reaction.funny') }}" src="{{ Theme::asset('img/reactions/funny.gif', null, false) }}" width="42"></a>
-                                                <a href="{{ action('PagesController@showReaction', ['reaction' => 'fail'] ) }}" title="{{ trans('updates.reaction.fail') }}" ><img alt="{{ trans('updates.reaction.fail') }}" src="{{ Theme::asset('img/reactions/fail.gif', null, false) }}" width="42"></a>
-                                                <a href="{{ action('PagesController@showReaction', ['reaction' => 'omg'] ) }}"  title="{{ trans('updates.reaction.omg') }}" ><img alt="{{ trans('updates.reaction.omg') }}" src="{{ Theme::asset('img/reactions/wow.gif', null, false) }}" width="42"></a>
-                                                <a href="{{ action('PagesController@showReaction', ['reaction' => 'ew'] ) }}" title="{{ trans('updates.reaction.ew') }}" ><img alt="{{ trans('updates.reaction.ew') }}" src="{{ Theme::asset('img/reactions/cry.gif', null, false) }}" width="42"></a>
-                                            </div>
+                                                @foreach(\App\Reaction::where('display', 'on')->orderBy('ord', 'asc')->get() as $reaction)
+                                                    <a href="{{ action('PagesController@showReaction', ['reaction' => $reaction->reaction_type] ) }}" title="{{ $reaction->name }}" ><img alt="{{ $reaction->name }}" src="{{ $reaction->icon }} " width="42"></a>
+                                                @endforeach
+                                               </div>
                                         </div>
                                         <div class="category-dropdown_sec sec_cat2 clearfix">
                                             <ul >
@@ -94,7 +89,8 @@
                     <div class="header__appbar--right__search__button material-button material-button--icon ripple"><i class="material-icons">&#xE8B6;</i></div>
                 </div>
                 <div class="header__appbar--right__notice">
-                    @if(Auth::check() and Auth::user()->usertype=='Admin' or getenvcong('UserCanPost') !== "no")
+
+                    @if(Auth::check() and Auth::user()->usertype=='Admin' or getenvcong('UserCanPost') != "no")
                         <div class="create-links hor">
                             <?php
                             $posttpe=\App\Categories::where("main", '1')->where("disabled", '0')->first();
@@ -108,7 +104,6 @@
 
 
                 @if(Auth::check())
-
                 <div class="header__appbar--right__settings">
                     <div class="header__appbar--right__settings__button material-button material-button--icon ripple has-dropdown" data-target="settings-dropdown" data-align="right-bottom">
                         <img src="{{ makepreview(Auth::user()->icon, 's', 'members/avatar') }}" width="34" height="34"  alt="{{ Auth::user()->username }}">

@@ -8,8 +8,8 @@ return [
     |--------------------------------------------------------------------------
     */
     //General
-    'quiz'          => 'Quiz',
-    'quizzes'           => 'Quizzes',
+    'quiz'          => 'Тест',
+    'quizzes'       => 'Тесты',
     'list'          => 'Факты',
     'new-s'         => 'Пост',
     'poll'          => 'Опрос',
@@ -59,9 +59,9 @@ return [
 
     'createdby'     => 'автор :user',
     'postedon'      => 'опубликовано :time',
-    'updatedon'     => '',
+    'updatedon'     => 'обновлено в :time',
 
-    'conversations' => 'Facebook Conversations',
+    'conversations' => 'Сообщения из Facebook',
     'disqusconversations' => 'Коментарии',
     'maylike'       => 'Мы думаем Вам понравится',
 
@@ -70,14 +70,14 @@ return [
     'usern'         => 'Имя',
     'gender'        => 'Пол',
     'location'      => 'Город',
-    'about'         => 'Инфо',
+    'about'         => 'Биография',
     'links'         => 'Ссылки',
-    'joinedat'      => 'присоединился :time',
+    'joinedat'      => 'Присоединился :time',
 
     'account'        => 'Аккаунт',
     'details'        => 'Детали',
-    'onlycgange'     => 'Если требуется',
-    'fullname'       => 'ФИО',
+    'onlycgange'     => 'Если хотите изменить',
+    'fullname'       => 'Полное имя',
     'savesettings'   => 'Обновить',
 
 
@@ -91,37 +91,37 @@ return [
     'password'              => 'Пароль',
     'remember'              => 'Запомнить',
 
-    'terms'                 => 'Условия Использования',
-    'termslink'             => 'Согласен :url ',
+    'terms'                 => 'условиями сайта',
+    'termslink'             => 'Я согласен с :url',
 
 
-    'Doyouhaveanaccount'    => 'У тебя есть аккаунт?',
-    'youdonthaveanaccount'  => 'У тебя нет аккаунта?',
+    'Doyouhaveanaccount'    => 'Уже зарегистрированы?',
+    'youdonthaveanaccount'  => 'Нет аккаунта?',
     'registerwithemail'     => 'Регистрация',
     'loginwithemail'        => 'Вход',
 
-    'connectfacebok'        => 'Connect with Facebook',
-    'connectgoogle'         => 'Connect with Google',
-    'connecttwitter'        => 'Connect with Twitter',
+    'connectfacebok'        => 'Войти с помощью Facebook',
+    'connectgoogle'         => 'Войти с помощью Google',
+    'connecttwitter'        => 'Войти с помощью Twitter',
 
     'adminnote'             => 'Можно изменить эти настройки, потому что вы админ',
 
-    'ccommunity'            => 'Ищи Нас в Социальных Сетях',
+    'ccommunity'            => 'Мы в социальных сетях',
     'likeonface'            => 'Facebook',
     'followontwitter'       => 'Twitter',
     'followongoogle'        => 'Google+',
     'followoninstagram'     => 'Instagram',
 
-    'sharefacebook'         => 'Share',
+    'sharefacebook'         => 'Поделиться',
     'sharetweet'            => 'Tweet',
     'sharegoogle'           => 'Google+',
-    'sharereddit'           => 'Лайк',
+    'sharereddit'           => 'Reddit',
     'sharepinterest'        => 'Pinterest',
 
 
     'nopermission'          => 'У вас нет разрешения на это!',
 
-    'successcreated'        => 'Поздравляем! Ваше пост будет доступен после проверки',
+    'successcreated'        => 'Ваш пост будет опубликован после модерации',
     'successupdated'        => 'Ваш пост обновлен',
 
     'minthreeca'            => 'Не менее 2 символов!',

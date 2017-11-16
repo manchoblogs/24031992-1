@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
 
          $this->call(CategoriesTableSeeder::class);
 
+         $this->call(ReactionSeeder::class);
+
        // $this->call(PostsTableSeeder::class);
 
         Model::reguard();

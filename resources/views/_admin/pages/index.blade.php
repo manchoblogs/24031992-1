@@ -83,33 +83,33 @@
 
         <?php $okm = "" ?>
     <div class="row">
-        @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orwhere("main", '2')->where("disabled", '0')->orderBy('order')->get() as $cat)
-        <div class="col-md-6">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">{!! $cat->icon !!} {{ trans('admin.recentlyadded') }} <b>{{ $cat->name }}</b> </h3>
-                    <div class="box-tools pull-right">
-                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                        <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                    </div>
-                </div><!-- /.box-header -->
-                <div class="box-body">
+        @foreach(\App\Categories::where("main", '1')->where("disabled", '0')->orderBy('order')->get() as $cat)
+            <div class="col-md-6">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">{!! $cat->icon !!} {{ trans('admin.recentlyadded') }} <b>{{ $cat->name }}</b> </h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
 
-                    <ul class="products-list product-list-in-box">
-                        @foreach(\App\Posts::approve('yes')->byType($cat->type)->latest("published_at")->take('5')->get() as $item)
-                            @include('._admin._particles.items.item_lists')
-                            <?php $okm = "true" ?>
-                        @endforeach
-                    </ul>
-                    @if($okm!="true")
-                        {{ trans('admin.nothingtoseehere') }}
-                    @endif
-                </div><!-- /.box-body -->
-                <div class="box-footer text-center">
-                    <a href="/admin/news" class="uppercase">{{ trans('admin.viewall') }}</a>
-                </div><!-- /.box-footer -->
+                        <ul class="products-list product-list-in-box">
+                            @foreach(\App\Posts::where('categories', 'LIKE',  '%"'.$cat->id.',%')->approve('yes')->orWhere('categories', 'LIKE',  '%,'.$cat->id.',%')->approve('yes')->latest("published_at")->take('5')->get() as $item)
+                                @include('._admin._particles.items.item_lists')
+                                <?php $okm = "true" ?>
+                            @endforeach
+                        </ul>
+                        @if($okm!="true")
+                            {{ trans('admin.nothingtoseehere') }}
+                        @endif
+                    </div><!-- /.box-body -->
+                    <div class="box-footer text-center">
+                        <a href="/admin/cat/{!! $cat->name_slug !!}" class="uppercase">{{ trans('admin.viewall') }}</a>
+                    </div><!-- /.box-footer -->
+                </div>
             </div>
-        </div>
         @endforeach
 
     </div>       <!-- USERS LIST -->

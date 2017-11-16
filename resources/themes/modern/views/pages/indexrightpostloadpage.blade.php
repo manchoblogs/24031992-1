@@ -4,6 +4,8 @@
             <div class="badge quiz"><div class="badge-img"></div></div>
         @elseif($item->featured_at !== null)
             <div class="badge featured"><div class="badge-img"></div></div>
+        @else
+            {{  reaction_icon_get($item) }}
         @endif
         <a class="sidebar-mosts__item__link" href="{{ makeposturl($item) }}" title="{{ $item->title }}">
             <figure class="sidebar-mosts__item__body">

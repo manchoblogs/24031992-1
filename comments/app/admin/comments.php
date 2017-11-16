@@ -154,7 +154,7 @@ $iconne=resimcreate($icon,"s","member/avatar");
 				<?php
 				if($out_id > 0){
 					?>
-					<a href="<?php echo $out_link ?>" target="_blank"><img src="<?php echo $out_icon ?>" style="width:35px;float:left;margin-right:8px;"><b style="float:left;font-weight:bold;"><?php echo $out_name ?></b><br><font size=2><?php echo timeConvert($tarih) ?></font></a>
+					<a href="<?php echo $out_link ?>" target="_blank"><img src="<?php echo $out_icon ?>" style="width:35px;float:left;margin-right:8px;"><b style="float:left;font-weight:bold;"><?php echo $out_name ?></b><br><font size=2><?php echo timeConvert($date) ?></font></a>
 					<?php
 				}else{
 

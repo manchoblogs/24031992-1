@@ -31,6 +31,8 @@ class AuthController extends Controller
     {
         if($type=='facebook'){
             return Socialite::driver($type)->stateless()->scopes(['email', 'public_profile'])->redirect();
+        }else{
+            return Socialite::driver($type)->redirect();
         }
 
         return Socialite::driver($type)->stateless()->redirect();
@@ -44,14 +46,19 @@ class AuthController extends Controller
     public function handleSocialCallback($type, User $user)
     {
 
-        $money = Socialite::driver($type)->stateless()->user();
+        if($type=='facebook'){
+            $money = Socialite::driver($type)->stateless()->user();
+        }else {
+            $money = Socialite::driver($type)->user();
+        }
 
-        if(null !== $money->getEmail()){
-                $checkUser = User::where('email', '=', $money->getEmail())->first();
-                if($checkUser){
-                    Auth::login($checkUser);
-                    return redirect('/');
-                }
+
+        if($money->getEmail() > ""){
+            $checkUser = User::where('email', '=', $money->getEmail())->first();
+            if($checkUser){
+                Auth::login($checkUser);
+                return redirect('/');
+            }
         }else{
             \Session::flash('error.message', trans('auth.cantgetemail'));
             \Session::flash('username',  $money->getNickname());
@@ -64,11 +71,12 @@ class AuthController extends Controller
             $username=$money->getNickname();
         }
 
-        $checkUserslug = User::where('username', $username)->first();
+        $checkUserslug = User::where('username', $username)->orwhere('username_slug', $username)->first();
         if(isset($checkUserslug)){
+            $username=$username.'-'.substr(md5(time()),0,5);
             $username_slug=str_slug($username, '-').'-'.substr(md5(time()),0,5);
         }else{
-            $username_slug=str_slug($username, '-');
+           $username_slug=str_slug($username, '-');
         }
 
         $user->facebook_id = $money->getId();
@@ -149,7 +157,10 @@ class AuthController extends Controller
     public function newlogin(Request $request)
     {
 
-        $okay = Validator::make($request->all(), [
+        $req = $request->all();
+
+
+        $okay = Validator::make($req, [
             'email' => 'required|email',
             'password' => 'required',
         ]);
@@ -212,7 +223,16 @@ class AuthController extends Controller
     public function newRegister(Request $request)
     {
 
-        $val = $this->validator($request->all());
+
+        $req = $request->all();
+
+        $val = $this->validator($req);
+
+        if(getenvcong('BuzzyContactCaptcha')=="on"){
+            if(empty($req['g-recaptcha-response'])){
+                return array("errors" => trans('buzzycontact.areyouhuman'));
+            }
+        }
 
         if($val->fails()){
 
@@ -220,9 +240,12 @@ class AuthController extends Controller
 
         }
 
+
+
+
         Auth::login($this->create($request->all()));
 
-        if(!empty(env('MAIL_USERNAME'))){
+        if(!empty(getenvcong('MAIL_USERNAME'))){
             $this->mailtoregistareduser();
         }
 
@@ -245,7 +268,7 @@ class AuthController extends Controller
             });
         }
         catch(\Exception $e){
-           return true;
+            return true;
         }
 
 
@@ -283,8 +306,7 @@ class AuthController extends Controller
     public function validator(array $request)
     {
         $rules = [
-            'username' => 'required|max:35|min:3',
-            'username_slug' => 'required|unique:users|max:35|min:3',
+            'username' => 'required|unique:users|max:35|min:3',
             'email' => 'required|email|max:75|unique:users',
             'password' => 'required|min:6|max:15',
         ];
